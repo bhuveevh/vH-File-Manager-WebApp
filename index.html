@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>File Manager WebApp</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+  <div id="filemanager-app">
+    <header>
+      <div class="toolbar">
+        <button id="new-folder-btn"><i class="fa fa-folder-plus"></i> New folder</button>
+        <button id="new-file-btn"><i class="fa fa-file-circle-plus"></i> New file</button>
+        <button id="upload-btn"><i class="fa fa-upload"></i> Upload</button>
+        <div class="divider"></div>
+        <button id="sort-btn"><i class="fa fa-sort"></i> Sort by</button>
+        <button id="refresh-btn"><i class="fa fa-rotate-right"></i> Refresh</button>
+        <div class="divider"></div>
+        <button id="download-zip-btn"><i class="fa fa-file-zipper"></i> ZIP (All)</button>
+        <button id="download-folder-btn"><i class="fa fa-folder-download"></i> Download this folder</button>
+        <div class="view-switch">
+          <button id="grid-view-btn" class="active"><i class="fa fa-th"></i></button>
+          <button id="list-view-btn"><i class="fa fa-bars"></i></button>
+        </div>
+        <button id="theme-toggle-btn" title="Toggle theme" style="margin-left:10px">
+          <i class="fa fa-moon"></i>
+        </button>
+      </div>
+      <div class="path-bar">
+        <span id="path-root" class="path-part">Files</span>
+        <span id="path-parts"></span>
+        <input id="search-input" placeholder="Search Collections..." />
+      </div>
+    </header>
+    <div class="content">
+      <aside id="sidebar"></aside>
+      <main id="main-panel"></main>
+    </div>
+    <input id="file-input" type="file" multiple style="display:none"/>
+    <!-- Modal for editing files/folders -->
+    <div id="modal-bg" class="modal-bg" style="display:none;">
+      <div class="modal">
+        <div class="modal-header">
+          <span id="modal-title"></span>
+          <button id="modal-close"><i class="fa fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+          <input id="edit-file-name" style="font-size:1em;padding:4px 8px;width:70%;margin-bottom:10px" />
+          <div id="file-format-category-wrap" style="display:flex;gap:8px;align-items:center;margin-bottom:8px">
+            <select id="edit-file-category" style="width:110px;"></select>
+            <select id="edit-file-format" style="flex:1"></select>
+          </div>
+          <textarea id="edit-file-content" rows="15"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button id="modal-save"><i class="fa fa-save"></i> Save</button>
+        </div>
+      </div>
+    </div>
+    <!-- Mindmap Modal -->
+    <div id="mindmap-modal-bg" class="modal-bg" style="display:none;">
+      <div class="modal mindmap-modal">
+        <div class="modal-header">
+          <span>Mindmap View</span>
+          <button id="mindmap-modal-close"><i class="fa fa-times"></i></button>
+        </div>
+        <div class="modal-body" style="overflow:auto;">
+          <div id="mindmap-container"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Floating Mindmap Button -->
+    <button id="mindmap-btn" title="Show Mindmap">𐂷</button>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
